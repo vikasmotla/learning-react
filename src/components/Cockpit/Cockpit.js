@@ -2,15 +2,17 @@ import React from 'react';
 
 import classes from './Cockpit.module.css'
 
+import Aux from '../../hoc/Aux'
+
 const cockpit = (props) => {
 
   console.log(props);
 
   const assignedClasses = [];
-  let btnClass = '';
+  let btnClass = classes.Button;
 
   if (props.showPersons) {
-    btnClass = classes.Red;
+    btnClass = [classes.Button, classes.Red].join(' ');
   }
 
   if (props.persons.length <= 2) {
@@ -20,15 +22,18 @@ const cockpit = (props) => {
     assignedClasses.push( classes.bold ); //classes = ['red', 'bold'];
   }
 
+
+   //you can simply use <> </>  in react 16.2 and above in place of <Aux></Aux>
+
   return(
-    <div>
-    <h1>Hi, I am a React App</h1>
-    <p className={assignedClasses.join(' ')}>This is really working</p>
-    <button
-      className = {btnClass}
-      onClick={props.toggle}>Toggle Persons
-    </button>
-    </div>
+    <Aux>
+      <h1>Hi, I am a React App</h1>
+      <p className={assignedClasses.join(' ')}>This is really working</p>
+      <button
+        className = {btnClass}
+        onClick={props.toggle}>Toggle Persons
+      </button>
+    </Aux>
   )
 }
 
